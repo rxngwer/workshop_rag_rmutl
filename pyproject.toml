@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "workshop-rag-rmutl"
+version = "0.1.0"
+description = "workshop rag for cs rmutl nan"
+authors = ["Game <jeerasakananta@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+streamlit = "^1.42.1"
+groq = "^0.18.0"
+qdrant-client = "^1.13.2"
+sentence-transformers = "^3.4.1"
+langchain = "^0.3.19"
+python-dotenv = "^1.0.1"
+pypdf = "^5.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
