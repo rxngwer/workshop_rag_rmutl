@@ -34,8 +34,15 @@
 2. **สร้าง virtual environment** (แนะนำแต่ไม่จำเป็น):
    ```bash
    python -m venv venv
-   source venv/bin/activate  # บน Windows ใช้ `venv\Scripts\activate`
    ```
+   - linux
+     ```bash
+     source venv/bin/activate  
+     ```
+   - window บน Windows ใช้ `venv\Scripts\activate`
+     ```bash
+      .\venv\Scripts\activate.bat
+     ```
 
 3. **ติดตั้ง dependencies**:
    ```bash
