@@ -27,7 +27,7 @@
 
 1. **โคลนโปรเจกต์**:
    ```bash
-  git clone https://github.com/JeerasakAnanta/workshop_rag_rmutl.git
+   git clone https://github.com/JeerasakAnanta/workshop_rag_rmutl.git
    cd rag-chatbot
    ```
 
