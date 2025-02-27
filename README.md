@@ -28,7 +28,7 @@ workshop นี้เป็นแชทบอทที่ใช้เทคน�
 
 1. **โคลนโปรเจกต์**:
    ```bash
-   git clone https://github.com/your-username/rag-chatbot.git
+   git clone https://github.com/JeerasakAnanta/workshop_rag_rmutl.git
    cd rag-chatbot
    ```
 
@@ -44,6 +44,15 @@ workshop นี้เป็นแชทบอทที่ใช้เทคน�
    .env_workspace\Scripts\activate
    ```
 
+   - linux
+     ```bash
+     source venv/bin/activate  
+     ```
+   - window บน Windows ใช้ `venv\Scripts\activate`
+     ```bash
+      .\venv\Scripts\activate.bat
+     ```
+
 3. **ติดตั้ง dependencies**:
    ```bash
    pip install -r requirements.txt
@@ -52,8 +61,8 @@ workshop นี้เป็นแชทบอทที่ใช้เทคน�
 4. **ตั้งค่าไฟล์ `.env`**:
    - สร้างไฟล์ชื่อ `.env` ในโฟลเดอร์หลัก
    - เพิ่ม Groq API Key ของคุณลงในไฟล์:
-     ```plaintext
-     GROQ_API_KEY=Your_Groq_Api_Key_Here
+     ```bash
+      GROQ_API_KEY=Your_Groq_Api_Key_Here
      ```
 
 ---
