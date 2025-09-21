@@ -1,5 +1,24 @@
 # Workshop RAG Chatbot with LangChain and Streamlit
-- workdshop แอปพลิเคชัน RAG (Retrieval-Augmented Generation) chatbot สร้างด้วย Streamlit ออกแบบมาเพื่อตอบคำถามเกี่ยวกับจังหวัดน่านโดยใช้เอกสาร PDF
+- Workshop แอปพลิเคชัน RAG (Retrieval-Augmented Generation) chatbot สร้างด้วย Streamlit ออกแบบมาเพื่อตอบคำถามเกี่ยวกับจังหวัดน่านโดยใช้เอกสาร PDF
+
+## 🚀 Streamlit Cloud Deployment
+
+This application is optimized for deployment on Streamlit Cloud. The main changes include:
+
+- **Cloud-Compatible Vector Store**: Uses FAISS by default instead of Qdrant for better cloud compatibility
+- **Python Version**: Compatible with Python 3.10+ (required by docling package)
+- **Environment Variables**: Configure GROQ_API_KEY in Streamlit Cloud secrets
+
+### Required Environment Variables for Streamlit Cloud:
+```
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+### Deployment Steps:
+1. Push your code to GitHub
+2. Connect your repository to Streamlit Cloud
+3. Set the GROQ_API_KEY in Streamlit Cloud secrets
+4. Deploy with main file: `app.py`
 
 ## 📁 โครงสร้างโปรเจกต์
 
