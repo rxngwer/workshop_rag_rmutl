@@ -1,21 +1,52 @@
-[tool.poetry]
+[project]
 name = "workshop-rag-rmutl"
 version = "0.1.0"
 description = "workshop rag for cs rmutl nan"
-authors = ["Game <jeerasakananta@gmail.com>"]
+authors = [
+    {name = "Game", email = "jeerasakananta@gmail.com"}
+]
 readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "streamlit>=1.42.1",
+    "groq>=0.18.0",
+    "qdrant-client>=1.13.2",
+    "sentence-transformers>=3.4.1",
+    "python-dotenv>=1.0.1",
+    "pypdf>=5.3.0",
+    "langchain>=0.3.0",
+    "langchain-community>=0.3.0",
+    "langchain-groq>=0.1.0",
+    "docling>=1.0.0",
+    "docling-core>=1.0.0",
+    "tiktoken>=0.7.0",
+    "faiss-cpu>=1.8.0",
+    "chromadb>=0.5.0",
+    "ipykernel>=6.30.1",
+    "langchain-huggingface>=0.3.1",
+]
 
-[tool.poetry.dependencies]
-python = "^3.12"
-streamlit = "^1.42.1"
-groq = "^0.18.0"
-qdrant-client = "^1.13.2"
-sentence-transformers = "^3.4.1"
-langchain = "^0.3.19"
-python-dotenv = "^1.0.1"
-pypdf = "^5.3.0"
-
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+
+[tool.black]
+line-length = 88
+target-version = ['py312']
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true

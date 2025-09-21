@@ -1,2 +1,371 @@
-.env_chatbot/
+# Environment variables
 .env
+.env.*
+.env.local
+.env.*.local
+.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# pdm
+.pdm.toml
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# Streamlit
+.streamlit/
+.streamlit_cache/
+
+# Model cache and embeddings
+model_cache/
+*.bin
+*.safetensors
+*.onnx
+*.pt
+*.pth
+*.h5
+*.hdf5
+*.ckpt
+*.pkl
+*.pickle
+
+# Vector databases
+qdrant_db/
+chroma_db/
+faiss_index/
+vector_store/
+embeddings/
+
+# LangChain cache
+.langchain_cache/
+.langchain/
+
+# HuggingFace cache
+.cache/
+huggingface_hub/
+transformers_cache/
+
+# AI/ML specific
+*.model
+*.weights
+*.checkpoint
+*.tflite
+*.mlmodel
+*.pb
+*.pkl
+*.joblib
+
+# RAG specific
+document_cache/
+processed_docs/
+chunk_cache/
+embedding_cache/
+
+# Groq API cache
+groq_cache/
+
+# Docling cache
+docling_cache/
+
+# Temporary files
+temp_uploaded_*
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Logs
+*.log
+logs/
+log/
+
+# API keys and secrets
+secrets/
+api_keys/
+credentials/
+
+# Test outputs
+test_outputs/
+test_results/
+test_*.log
+test_*.json
+test_*.csv
+
+# Jupyter notebook outputs
+*.ipynb_checkpoints/
+checkpoints/
+.ipynb_checkpoints/
+
+# Development and debugging
+debug/
+debug_*.log
+debug_*.txt
+*.debug
+
+# Data files (except example PDFs)
+data/
+datasets/
+*.csv
+*.json
+*.xml
+*.txt
+!README.txt
+!requirements.txt
+
+# Large files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.dmg
+*.iso
+
+# Media files
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.webm
+*.mp3
+*.wav
+*.flac
+*.aac
+*.ogg
+*.wma
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.svg
+*.ico
+*.webp
+
+# Document files (except example PDFs)
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.ppt
+*.pptx
+*.odt
+*.ods
+*.odp
+*.rtf
+*.pages
+*.numbers
+*.key
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Project specific
+.env_chatbot/
+*.pdf
+!pdf/*.pdf
+!pdf/README.md
+
+# UV specific
+.uv/
+uv.lock
+
+# DevContainer
+.devcontainer/
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# IDE specific
+*.swp
+*.swo
+*~
+
+# Docker
+.dockerignore
+Dockerfile
+docker-compose.yml
+docker-compose.yaml
+
+# Kubernetes
+*.yaml
+*.yml
+!pyproject.toml
+!README.md
+!TROUBLESHOOTING.md
+
+# Performance monitoring
+*.prof
+*.profile
+*.cprof
+
+# Security
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Configuration backups
+config.backup
+settings.backup
+
+# Local development
+local/
+local_*
+dev/
+dev_*
+
+# Production files
+prod/
+production/
+*.prod
+*.production
+vectorstore/index.faiss
