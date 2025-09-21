@@ -32,8 +32,11 @@ from langchain_groq import ChatGroq
 # PDF processing
 from pypdf import PdfReader
 
-# Qdrant
-from qdrant_client.models import PointStruct
+# Vector store models (optional Qdrant support)
+try:
+    from qdrant_client.models import PointStruct
+except ImportError:
+    PointStruct = None
 
 # Load environment variables
 load_dotenv()
@@ -74,7 +77,7 @@ class Config:
     CHUNK_SIZE: int = int(os.getenv("CHUNK_SIZE", "1000"))
     CHUNK_OVERLAP: int = int(os.getenv("CHUNK_OVERLAP", "200"))
     TEXT_SPLITTER_METHOD: str = os.getenv("TEXT_SPLITTER_METHOD", "recursive")
-    VECTOR_STORE_TYPE: str = os.getenv("VECTOR_STORE_TYPE", "qdrant")
+    VECTOR_STORE_TYPE: str = os.getenv("VECTOR_STORE_TYPE", "faiss")
     QA_CHAIN_TYPE: str = os.getenv("QA_CHAIN_TYPE", "stuff")
     
     # Docling Configuration
@@ -103,8 +106,11 @@ class Document:
     text: str
     metadata: Optional[dict] = None
     
-    def to_point_struct(self, vector: List[float]) -> PointStruct:
-        """Convert document to Qdrant PointStruct."""
+    def to_point_struct(self, vector: List[float]):
+        """Convert document to Qdrant PointStruct (if Qdrant is available)."""
+        if PointStruct is None:
+            return None
+            
         payload = {"text": self.text}
         if self.metadata:
             payload.update(self.metadata)
@@ -343,36 +349,51 @@ class LangChainRAGService:
             logger.error(f"Error setting up LLM: {e}")
             raise
     
-    def create_vector_store(self, documents: List[LangChainDocument], store_type: str = "qdrant"):
+    def create_vector_store(self, documents: List[LangChainDocument], store_type: str = "faiss"):
         """Create vector store from documents."""
         try:
             # Split documents
             split_docs = self.text_splitter.split_documents(documents)
             
-            # Create vector store based on type
+            # Create vector store based on type with fallback
             if store_type == "qdrant":
-                self.vector_store = Qdrant.from_documents(
-                    documents=split_docs,
-                    embedding=self.embeddings,
-                    collection_name=Config.COLLECTION_NAME,
-                    url=Config.QDRANT_MODE if Config.QDRANT_MODE != ":memory:" else None,
-                    prefer_grpc=True
-                )
+                try:
+                    self.vector_store = Qdrant.from_documents(
+                        documents=split_docs,
+                        embedding=self.embeddings,
+                        collection_name=Config.COLLECTION_NAME,
+                        url=Config.QDRANT_MODE if Config.QDRANT_MODE != ":memory:" else None,
+                        prefer_grpc=True
+                    )
+                    logger.info(f"Created Qdrant vector store with {len(split_docs)} documents")
+                except Exception as qdrant_error:
+                    logger.warning(f"Qdrant not available, falling back to FAISS: {qdrant_error}")
+                    self.vector_store = FAISS.from_documents(
+                        documents=split_docs,
+                        embedding=self.embeddings
+                    )
+                    logger.info(f"Created FAISS vector store (fallback) with {len(split_docs)} documents")
             elif store_type == "faiss":
                 self.vector_store = FAISS.from_documents(
                     documents=split_docs,
                     embedding=self.embeddings
                 )
+                logger.info(f"Created FAISS vector store with {len(split_docs)} documents")
             elif store_type == "chroma":
                 self.vector_store = Chroma.from_documents(
                     documents=split_docs,
                     embedding=self.embeddings,
                     persist_directory="./chroma_db"
                 )
+                logger.info(f"Created Chroma vector store with {len(split_docs)} documents")
             else:
-                raise ValueError(f"Unsupported vector store type: {store_type}")
-            
-            logger.info(f"Created {store_type} vector store with {len(split_docs)} documents")
+                # Default to FAISS for unsupported types
+                logger.warning(f"Unsupported vector store type: {store_type}, using FAISS")
+                self.vector_store = FAISS.from_documents(
+                    documents=split_docs,
+                    embedding=self.embeddings
+                )
+                logger.info(f"Created FAISS vector store (default) with {len(split_docs)} documents")
             
         except Exception as e:
             logger.error(f"Error creating vector store: {e}")
@@ -437,7 +458,7 @@ class LangChainRAGService:
             logger.error(f"Error setting up conversation chain: {e}")
             raise
     
-    def load_documents_from_file(self, file_path: str, store_type: str = "qdrant"):
+    def load_documents_from_file(self, file_path: str, store_type: str = "faiss"):
         """Load documents from file and create vector store."""
         try:
             # Load document using Docling
