@@ -369,3 +369,4 @@ production/
 *.prod
 *.production
 vectorstore/index.faiss
+.env
