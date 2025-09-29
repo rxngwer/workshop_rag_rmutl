@@ -68,7 +68,7 @@ class Config:
     SEARCH_LIMIT: int = int(os.getenv("SEARCH_LIMIT", "2"))
     
     # File Configuration
-    PDF_PATH: str = os.getenv("PDF_PATH", "pdf/จังหวัดน่าน.pdf")
+    PDF_PATH: str = os.getenv("PDF_PATH", "pdf/อาหารพื้นเมืองจังหวัดน่าน.pdf")
     
     # System Messages
     SYSTEM_MESSAGE: str = os.getenv("SYSTEM_MESSAGE", "คุณเป็นผู้ช่วยที่เชี่ยวชาญเกี่ยวกับข้อมูลในเอกสาร จงตอบคำถามอย่างกระชับและถูกต้อง")
